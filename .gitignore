@@ -61,4 +61,4 @@ typings/
 .next
 
 # image
-public/images/*.jpg
+public/images/
