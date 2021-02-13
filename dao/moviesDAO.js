@@ -2,7 +2,7 @@ let movies
 
 class MoviesDAO {
   static async injectDB(conn) {
-    if (popular) {
+    if (movies) {
       return
     }
     try {
@@ -18,7 +18,7 @@ class MoviesDAO {
         $project: {}
       }]
 
-      const result = await movies.aggregate(pipeline)
+      const result = await movies.find()
 
       return await result.toArray()
     } catch (e) {
