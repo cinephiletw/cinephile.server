@@ -61,4 +61,6 @@ typings/
 .next
 
 # image
-public/images/
+public/images/poster
+public/images/backdrop
+
