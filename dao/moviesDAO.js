@@ -12,13 +12,13 @@ class MoviesDAO {
     }
   }
 
-  static async movieInfoFetch() {
+  static async movieInfoFetch(movieId) {
     try {
       const pipeline = [{
-        $project: {}
+        $match: {"movie_id": movieId}
       }]
 
-      const result = await movies.find()
+      const result = await movies.aggregate(pipeline)
 
       return await result.toArray()
     } catch (e) {

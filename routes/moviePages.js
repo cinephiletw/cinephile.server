@@ -9,21 +9,21 @@ const url = `mongodb+srv://${user}:${password}@movies.9gsbi.mongodb.net/movies?r
 let data
 // connect to mongoDB for Home Page
 // fetch data of popular movie with popoularMoviesDAO.js
-MongoClient.connect(
-  url,
-  {useNewUrlParser: true},
-  {useUnifiedTopology: true},
-  {poolSize: 5},
-)
-  .catch(err => {
-    console.error(err.stack)
-    process.exit(1)
-  })
-  .then(async client => {
-    await MoviesDAO.injectDB(client)
-    data = await MoviesDAO.movieInfoFetch()
-  })
-router.get('/', (req, res) => {
+router.get('/movies/:movieId', async (req, res) => {
+  await MongoClient.connect(
+    url,
+    {useNewUrlParser: true},
+    {useUnifiedTopology: true},
+    {poolSize: 5},
+  )
+    .catch(err => {
+      console.error(err.stack)
+      process.exit(1)
+    })
+    .then(async client => {
+      await MoviesDAO.injectDB(client)
+      data = await MoviesDAO.movieInfoFetch(parseInt(req.params.movieId))
+    })
   res.status(200).send({ data }).end();
 });
 

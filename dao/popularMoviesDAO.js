@@ -6,7 +6,7 @@ class PopularMoviesDAO {
       return
     }
     try {
-      popular = await conn.db("popular_movies").collection("movie_details");
+      popular = await conn.db("movies").collection("info");
     } catch (e) {
       console.error(`Unable to establish collection handles in popularMoviesDAO: ${e}`)
     }
@@ -15,7 +15,7 @@ class PopularMoviesDAO {
   static async homePagePopularFetch() {
     try {
       const pipeline = [{
-        $project: {"id":1, "title":1, "vote_average":1, "release_date":1}
+        $project: {"movie_id":1, "title":1}
       }]
 
       const result = await popular.aggregate(pipeline)
