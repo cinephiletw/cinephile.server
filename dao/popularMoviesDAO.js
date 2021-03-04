@@ -14,9 +14,14 @@ class PopularMoviesDAO {
 
   static async homePagePopularFetch() {
     try {
-      const pipeline = [{
-        $project: {"movie_id":1, "title":1}
-      }]
+      const pipeline = [
+        {
+          $project: {"movie_id":1, "title":1}
+        },
+        {
+          $limit: 10
+        }
+      ]
 
       const result = await popular.aggregate(pipeline)
 
