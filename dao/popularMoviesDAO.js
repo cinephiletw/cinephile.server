@@ -16,10 +16,10 @@ class PopularMoviesDAO {
     try {
       const pipeline = [
         {
-          $project: {"movie_id":1, "title":1}
+          $project: {"movie_id":1, "title":1, "imdb_rate":1}
         },
         {
-          $limit: 10
+          $match: {"imdb_rate": {"$gt": 7}}
         }
       ]
 
