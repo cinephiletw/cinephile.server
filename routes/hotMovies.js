@@ -20,11 +20,11 @@ MongoClient.connect(
   })
   .then(async client => {
     await HotMoviesDAO.injectDB(client)
-    hotData = await HotMoviesDAO.homePageHotFetch()
+    data = await HotMoviesDAO.homePageHotFetch()
     console.log(hotData)
   })
 router.get('/', (req, res) => {
-  res.status(200).send({ hotData }).end();
+  res.status(200).send({ data }).end();
 })
 
 module.exports = router;
