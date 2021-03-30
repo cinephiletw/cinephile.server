@@ -21,10 +21,10 @@ MongoClient.connect(
   })
   .then(async client => {
     await PopularMoviesDAO.injectDB(client)
-    data = await PopularMoviesDAO.homePagePopularFetch()
+    popularData = await PopularMoviesDAO.homePagePopularFetch()
   })
 router.get('/', (req, res) => {
-  res.status(200).send({ data }).end();
+  res.status(200).send({ popularData }).end();
 });
 
 
