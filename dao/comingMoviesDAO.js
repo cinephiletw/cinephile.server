@@ -1,30 +1,30 @@
-let popular
+let coming
 
-class PopularMoviesDAO {
+class ComingMoviesDAO {
   static async injectDB(conn) {
-    if (popular) {
+    if (coming) {
       return
     }
     try {
-      popular = await conn.db("movies").collection("info");
+      coming = await conn.db("movies").collection("info");
     } catch (e) {
       console.error(`Unable to establish collection handles in popularMoviesDAO: ${e}`)
     }
   }
 
-  static async homePagePopularFetch() {
+  static async homePageComingFetch() {
     try {
+      let today = Math.floor(Date.now() / 1000);
       const pipeline = [
         {
-          $project: {"movie_id":1, "title":1, "imdb_rate":1}
+          $match: {"release_date": {$gt: today}}
         },
         {
-          $match: {"imdb_rate": {"$gt": 7}}
+          $project: {"movie_id":1, "title":1}
         }
       ]
 
-      const result = await popular.aggregate(pipeline)
-
+      const result = await coming.aggregate(pipeline)
       return await result.toArray()
     } catch (e) {
       console.error(`Unable to get popular movies: ${e}`)
@@ -33,5 +33,4 @@ class PopularMoviesDAO {
   }
 }
 
-module.exports = PopularMoviesDAO;
-
+module.exports = ComingMoviesDAO;

@@ -59,3 +59,8 @@ typings/
 
 # next.js build output
 .next
+
+# image
+public/images/poster
+public/images/backdrop
+
