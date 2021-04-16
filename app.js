@@ -31,12 +31,12 @@ app.use(sassMiddleware({
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use("/popularMovies", popularMoviesRouter);  
-app.use("/comingMovies", comingMoviesRouter);  
-app.use("/hotMovies", hotMoviesRouter);  
-app.use("/moviePages", moviePagesRouter);
+app.use('/api/v1', indexRouter);
+app.use('/api/v1/users', usersRouter);
+app.use("/api/v1/movies/popular", popularMoviesRouter);  
+app.use("/api/v1/movies/coming", comingMoviesRouter);  
+app.use("/api/v1/movies/hot", hotMoviesRouter);  
+app.use("/api/v1/moviePages", moviePagesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
