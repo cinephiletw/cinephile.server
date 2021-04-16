@@ -9,7 +9,7 @@ const url = `mongodb+srv://${user}:${password}@movies.9gsbi.mongodb.net/movies?r
 let data
 // connect to mongoDB for Home Page
 // fetch data of popular movie with popoularMoviesDAO.js
-router.get('/movies/:movieId', async (req, res) => {
+router.get('/movie/:movieId', async (req, res) => {
   await MongoClient.connect(
     url,
     {useNewUrlParser: true},
