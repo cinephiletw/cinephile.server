@@ -21,7 +21,6 @@ MongoClient.connect(
   .then(async client => {
     await ComingMoviesDAO.injectDB(client)
     comingData = await ComingMoviesDAO.homePageComingFetch()
-    console.log(comingData)
   })
 router.get('/', (req, res) => {
   res.status(200).send({ comingData }).end();

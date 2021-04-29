@@ -15,7 +15,6 @@ class HotMoviesDAO {
   static async homePageHotFetch() {
     try {
       let today = Math.floor(Date.now() / 1000);
-      console.log(today)
       let twentyDaysAgo = today - 1728000;
       const pipeline = [
         {
@@ -36,8 +35,6 @@ class HotMoviesDAO {
       ]
 
       const result = await hot.aggregate(pipeline)
-      console.log(result)
-
       return await result.toArray()
     } catch (e) {
       console.error(`Unable to get hot movies: ${e}`)

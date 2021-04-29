@@ -12,6 +12,7 @@ var popularMoviesRouter = require("./routes/popularMovies");
 var comingMoviesRouter = require("./routes/comingMovies"); 
 var hotMoviesRouter = require("./routes/hotMovies"); 
 var moviePagesRouter = require("./routes/moviePages")
+var loginRouter = require("./routes/login")
 var app = express();
 
 // start the rest of your app here
@@ -37,6 +38,7 @@ app.use("/api/v1/movies/popular", popularMoviesRouter);
 app.use("/api/v1/movies/coming", comingMoviesRouter);  
 app.use("/api/v1/movies/hot", hotMoviesRouter);  
 app.use("/api/v1/moviePages", moviePagesRouter);
+app.use("/api/v1/login", loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
